@@ -1,0 +1,23 @@
+variables:
+  - name: example_name
+    description: Name for the example directory
+    default: my-example
+
+  - name: module_name
+    description: Name for the module directory
+    default: my-module
+
+  - name: test_name
+    description: Name for the test directory
+    default: my-test
+
+  - name: description
+    description: Description for the generated components
+    default: A Terraform module
+
+  - name: outputs_filename
+    description: The filename of the example outputs file
+    default: outputs.tf
+    prompt: false
+
+skip_files: []
