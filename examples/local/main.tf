@@ -1,5 +1,5 @@
 module "example_helpers" {
   source = "../.."
 
-  example_seed = "stuff"
+  example_seed = var.example_seed
 }
