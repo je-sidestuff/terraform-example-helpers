@@ -53,6 +53,7 @@
     },
     "mounts": [
         "type=bind,source=${localEnv:HOME}/.aws,target=/home/vscode/.aws,consistency=cached",
+        "type=bind,source=${localEnv:HOME}/.claude,target=/home/vscode/.claude,consistency=cached",
         "type=bind,source=${localEnv:HOME}/.ssh,target=/home/vscode/.ssh,readonly"
     ],
     "initializeCommand": "mkdir -p ~/{.aws,.ssh}"
