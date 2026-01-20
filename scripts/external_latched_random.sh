@@ -28,7 +28,8 @@ fi
 
 if [ -f terraform.tfstate ]; then
     echo "Attempting to resolve existing value from state file." >> $LOG_PATH
-    export MAYBE_RANDOM_VALUE="$(terraform state pull | jq -r '.resources[] | select(.module == "module.example_helpers") | select(.name == "latched_random_data") | .instances[0].attributes.result.random_value')"
+    MAYBE_RANDOM_VALUE="$(terraform state pull | jq -r '.resources[] | select(.module == "module.example_helpers") | select(.name == "latched_random_data") | .instances[0].attributes.result.random_value')"
+    export MAYBE_RANDOM_VALUE
     echo "Resolved value (will be blank if example is not applied): ${MAYBE_RANDOM_VALUE}" >> $LOG_PATH
     if [ -n "${MAYBE_RANDOM_VALUE}" ]; then
         echo "Using existing ranom value." >> $LOG_PATH

@@ -13,7 +13,7 @@ ARG HADOLINT_VERSION=v2.12.0
 ARG SHELLCHECK_VERSION=v0.9.0
 
 # https://hub.docker.com/r/alpine/terragrunt/tags
-ARG TERRAGRUNT_VERSION=1.5.7
+ARG TERRAGRUNT_VERSION=1.12.2
 
 # https://github.com/terraform-linters/tflint/pkgs/container/tflint
 ARG TFLINT_VERSION=v0.48.0
@@ -37,11 +37,10 @@ FROM koalaman/shellcheck:${SHELLCHECK_VERSION} as shellcheck
 FROM alpine/terragrunt:${TERRAGRUNT_VERSION} as terragrunt
 FROM ghcr.io/terraform-linters/tflint:${TFLINT_VERSION} as tflint
 FROM quay.io/terraform-docs/terraform-docs:${TERRAFORM_DOCS_VERSION} as terraform-docs
-FROM quay.io/getsops/sops:${SOPS_VERSION} as sops
 FROM aquasec/trivy:${TRIVY_VERSION} as trivy
 FROM mikefarah/yq:${YQ_VERSION} as yq
 
-FROM mcr.microsoft.com/devcontainers/go:1.22-bullseye
+FROM mcr.microsoft.com/devcontainers/go:1.23-bullseye
 
 COPY --from=helmfile /usr/local/bin/helmfile /usr/local/bin/
 COPY --from=helm /usr/bin/helm /usr/local/bin/
