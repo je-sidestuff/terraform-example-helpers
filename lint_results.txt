@@ -1,0 +1,73 @@
+--------------------------------------------------------------------------------
+
+                              /@@#///////@@/(@//@%/(@.@(       @@
+                          @@//////////////////////////////#*  @@@
+                        @////@//(///////////@@@@@///@//@/@**//@@(
+                      @///////@///////////////@@@@    (           @,
+                     @/(&/@////////////////////                     @
+                    @////////////////////////@@                      @
+                  @%////////(//////////%/////&@            @@       *,@           ______________
+             @@@@@/@/#/////(&//////////////////                       .@         /              \
+        *@@@@@.    .%///(//@//////////////////&.   .@@,                 @%      / Don't mind me  \
+      @@%           .&@&&/@.@//&/////(//////////    @@@@@@@@@         .. &@    / I'm just looking \
+    @@%               @@@@@   @&/////////////////#   @/       V  @@/ ,@@@ @   <  for some trash... |
+@@@%                   @@@@        .%@@@@//////#@ @   @@         @     .,.     \__________________/
+                                          @@@/@(  (@@@@% @/\      %
+                                           @@@@(    .     .@@/\   #
+                                             @                  %@%
+
+--------------------------------------------------------------------------------
+2026-01-21 01:45:05 [INFO]   ---------------------------------------------
+2026-01-21 01:45:05 [INFO]   --- GitHub Actions Multi Language Linter ----
+2026-01-21 01:45:05 [INFO]    - Image Creation Date:[2023-01-04T06:59:26Z]
+2026-01-21 01:45:05 [INFO]    - Image Revision:[985ef206aaca4d560cb9ee2af2b42ba44adc1d55]
+2026-01-21 01:45:05 [INFO]    - Image Version:[985ef206aaca4d560cb9ee2af2b42ba44adc1d55]
+2026-01-21 01:45:05 [INFO]   ---------------------------------------------
+2026-01-21 01:45:05 [INFO]   ---------------------------------------------
+2026-01-21 01:45:05 [INFO]   The Super-Linter source code can be found at:
+2026-01-21 01:45:05 [INFO]    - https://github.com/github/super-linter
+2026-01-21 01:45:05 [INFO]   ---------------------------------------------
+Removing Languages from LANGUAGE_ARRAY for slim image...
+found item:[ARM], removing Language...
+found item:[CSHARP], removing Language...
+found item:[ENV], removing Language...
+found item:[POWERSHELL], removing Language...
+found item:[RUST_2015], removing Language...
+found item:[RUST_2018], removing Language...
+found item:[RUST_2021], removing Language...
+found item:[RUST_CLIPPY], removing Language...
+Removing Linters from LINTER_NAMES_ARRAY for slim image...
+found item:[ARM], removing linter...
+found item:[CSHARP], removing linter...
+found item:[ENV], removing linter...
+found item:[POWERSHELL], removing linter...
+2026-01-21 01:46:34 [INFO]   ERROR! Failed to call GitHub Status API!
+2026-01-21 01:46:34 [INFO]   ERROR:[curl: (22) The requested URL returned error: 403]
+2026-01-21 01:46:34 [ERROR]   ERRORS FOUND in DOCKERFILE_HADOLINT:[1]
+2026-01-21 01:46:35 [INFO]   ERROR! Failed to call GitHub Status API!
+2026-01-21 01:46:35 [INFO]   ERROR:[curl: (22) The requested URL returned error: 403]
+2026-01-21 01:46:35 [ERROR]   ERRORS FOUND in GITHUB_ACTIONS:[1]
+2026-01-21 01:46:35 [INFO]   ERROR! Failed to call GitHub Status API!
+2026-01-21 01:46:35 [INFO]   ERROR:[curl: (22) The requested URL returned error: 403]
+2026-01-21 01:46:35 [INFO]   ERROR! Failed to call GitHub Status API!
+2026-01-21 01:46:35 [INFO]   ERROR:[curl: (22) The requested URL returned error: 403]
+2026-01-21 01:46:35 [ERROR]   ERRORS FOUND in GO:[1]
+2026-01-21 01:46:36 [INFO]   ERROR! Failed to call GitHub Status API!
+2026-01-21 01:46:36 [INFO]   ERROR:[curl: (22) The requested URL returned error: 403]
+2026-01-21 01:46:36 [INFO]   ERROR! Failed to call GitHub Status API!
+2026-01-21 01:46:36 [INFO]   ERROR:[curl: (22) The requested URL returned error: 403]
+2026-01-21 01:46:36 [INFO]   ERROR! Failed to call GitHub Status API!
+2026-01-21 01:46:36 [INFO]   ERROR:[curl: (22) The requested URL returned error: 403]
+2026-01-21 01:46:36 [INFO]   ERROR! Failed to call GitHub Status API!
+2026-01-21 01:46:36 [INFO]   ERROR:[curl: (22) The requested URL returned error: 403]
+2026-01-21 01:46:36 [ERROR]   ERRORS FOUND in NATURAL_LANGUAGE:[1]
+2026-01-21 01:46:37 [INFO]   ERROR! Failed to call GitHub Status API!
+2026-01-21 01:46:37 [INFO]   ERROR:[curl: (22) The requested URL returned error: 403]
+2026-01-21 01:46:37 [INFO]   ERROR! Failed to call GitHub Status API!
+2026-01-21 01:46:37 [INFO]   ERROR:[curl: (22) The requested URL returned error: 403]
+2026-01-21 01:46:37 [ERROR]   ERRORS FOUND in TERRAFORM_TERRASCAN:[1]
+2026-01-21 01:46:37 [INFO]   ERROR! Failed to call GitHub Status API!
+2026-01-21 01:46:37 [INFO]   ERROR:[curl: (22) The requested URL returned error: 403]
+2026-01-21 01:46:38 [INFO]   ERROR! Failed to call GitHub Status API!
+2026-01-21 01:46:38 [INFO]   ERROR:[curl: (22) The requested URL returned error: 403]
+2026-01-21 01:46:38 [FATAL]   Exiting with errors found!
