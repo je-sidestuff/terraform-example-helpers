@@ -1,0 +1,4 @@
+output "result" {
+  description = "Output from the {{ .module_name }} module"
+  value       = module.{{ .module_name }}
+}

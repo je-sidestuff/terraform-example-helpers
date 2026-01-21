@@ -13,16 +13,14 @@ ARG HADOLINT_VERSION=v2.12.0
 ARG SHELLCHECK_VERSION=v0.9.0
 
 # https://hub.docker.com/r/alpine/terragrunt/tags
-ARG TERRAGRUNT_VERSION=1.12.2
+
+ARG TERRAGRUNT_VERSION=1.13.2
 
 # https://github.com/terraform-linters/tflint/pkgs/container/tflint
 ARG TFLINT_VERSION=v0.48.0
 
 # https://github.com/terraform-docs/terraform-docs/releases
 ARG TERRAFORM_DOCS_VERSION=0.16.0
-
-# https://github.com/getsops/sops/releases
-ARG SOPS_VERSION=v3.8.1
 
 # https://github.com/aquasecurity/trivy/releases
 ARG TRIVY_VERSION=0.49.1
