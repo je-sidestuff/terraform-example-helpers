@@ -9,9 +9,10 @@ FROM golang:1.23-bookworm
 
 # Install terraform and terragrunt from the alpine/terragrunt image
 COPY --from=terragrunt /bin/terraform /usr/local/bin/
-COPY --from=terragrunt /bin/terragrunt /usr/local/bin/
+COPY --from=terragrunt /usr/local/bin/terragrunt /usr/local/bin/
 
 # Install basic utilities
+# hadolint ignore=DL3008
 RUN apt-get update && apt-get install -y --no-install-recommends \
     bash \
     git \
