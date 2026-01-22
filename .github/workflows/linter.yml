@@ -36,5 +36,6 @@ jobs:
           # Go template syntax (e.g., {{ .test_name }}) in templates/
           VALIDATE_GO: false
           VALIDATE_GO_MODULES: false
+          VALIDATE_NATURAL_LANGUAGE: false
           DEFAULT_BRANCH: main
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
