@@ -14,14 +14,14 @@ module "example_helpers" {
 
 ## Inputs
 
-| Name | Description | Type | Required |
-|------|-------------|------|----------|
-| example_seed | A seed value to use for generating a random value | `string` | No |
+| Name         | Description                                       | Type     | Required |
+| ------------ | ------------------------------------------------- | -------- | -------- |
+| example_seed | A seed value to use for generating a random value | `string` | No       |
 
 ## Outputs
 
-| Name | Description |
-|------|-------------|
+| Name         | Description                                |
+| ------------ | ------------------------------------------ |
 | random_value | The generated random value from the module |
 
 ## Running This Example

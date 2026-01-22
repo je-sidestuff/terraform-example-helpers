@@ -1,0 +1,11 @@
+# EditorConfig helps maintain consistent coding styles
+# https://editorconfig.org
+
+root = true
+
+# Shell scripts - shfmt reads these settings
+[*.sh]
+indent_style = space
+indent_size = 2
+# shfmt specific: switch case indent and binary ops at start of line
+shell_variant = bash

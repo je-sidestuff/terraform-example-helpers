@@ -12,16 +12,16 @@ module "{{ .module_name }}" {
 
 ## Requirements
 
-| Name | Version |
-|------|---------|
-| terraform | >= 1.0 |
-| null | >= 3.0 |
+| Name      | Version |
+| --------- | ------- |
+| terraform | >= 1.0  |
+| null      | >= 3.0  |
 
 ## Providers
 
 | Name | Version |
-|------|---------|
-| null | >= 3.0 |
+| ---- | ------- |
+| null | >= 3.0  |
 
 ## Inputs
 
@@ -29,6 +29,6 @@ No inputs.
 
 ## Outputs
 
-| Name | Description |
-|------|-------------|
-| id | The ID of the null resource |
+| Name | Description                 |
+| ---- | --------------------------- |
+| id   | The ID of the null resource |

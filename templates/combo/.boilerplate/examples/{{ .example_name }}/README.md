@@ -12,9 +12,9 @@ module "{{ .module_name }}" {
 
 ## Requirements
 
-| Name | Version |
-|------|---------|
-| terraform | >= 1.0 |
+| Name      | Version |
+| --------- | ------- |
+| terraform | >= 1.0  |
 
 ## Inputs
 
@@ -22,6 +22,6 @@ No inputs.
 
 ## Outputs
 
-| Name | Description |
-|------|-------------|
+| Name   | Description                               |
+| ------ | ----------------------------------------- |
 | result | Output from the {{ .module_name }} module |

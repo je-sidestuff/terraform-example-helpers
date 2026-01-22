@@ -1,3 +1,6 @@
+// super-linter:ignore:GO
+// super-linter:ignore:GO_MODULES
+
 package test
 
 import (

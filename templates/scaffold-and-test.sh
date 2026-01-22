@@ -9,44 +9,44 @@ DESCRIPTION="${DESCRIPTION:-A Terraform module}"
 
 # Parse command line arguments
 while [[ $# -gt 0 ]]; do
-    case $1 in
-        --example-name)
-            EXAMPLE_NAME="$2"
-            shift 2
-            ;;
-        --module-name)
-            MODULE_NAME="$2"
-            shift 2
-            ;;
-        --test-name)
-            TEST_NAME="$2"
-            shift 2
-            ;;
-        --description)
-            DESCRIPTION="$2"
-            shift 2
-            ;;
-        -h|--help)
-            echo "Usage: $0 [OPTIONS]"
-            echo ""
-            echo "Scaffold a new Terraform module, example, and test, then run the test."
-            echo ""
-            echo "Options:"
-            echo "  --example-name NAME   Name for the example (default: my-example)"
-            echo "  --module-name NAME    Name for the module (default: my-module)"
-            echo "  --test-name NAME      Name for the test (default: my-test)"
-            echo "  --description DESC    Description for the components (default: A Terraform module)"
-            echo "  -h, --help            Show this help message"
-            echo ""
-            echo "Environment variables:"
-            echo "  EXAMPLE_NAME, MODULE_NAME, TEST_NAME, DESCRIPTION can also be set via environment"
-            exit 0
-            ;;
-        *)
-            echo "Unknown option: $1"
-            exit 1
-            ;;
-    esac
+  case $1 in
+  --example-name)
+    EXAMPLE_NAME="$2"
+    shift 2
+    ;;
+  --module-name)
+    MODULE_NAME="$2"
+    shift 2
+    ;;
+  --test-name)
+    TEST_NAME="$2"
+    shift 2
+    ;;
+  --description)
+    DESCRIPTION="$2"
+    shift 2
+    ;;
+  -h | --help)
+    echo "Usage: $0 [OPTIONS]"
+    echo ""
+    echo "Scaffold a new Terraform module, example, and test, then run the test."
+    echo ""
+    echo "Options:"
+    echo "  --example-name NAME   Name for the example (default: my-example)"
+    echo "  --module-name NAME    Name for the module (default: my-module)"
+    echo "  --test-name NAME      Name for the test (default: my-test)"
+    echo "  --description DESC    Description for the components (default: A Terraform module)"
+    echo "  -h, --help            Show this help message"
+    echo ""
+    echo "Environment variables:"
+    echo "  EXAMPLE_NAME, MODULE_NAME, TEST_NAME, DESCRIPTION can also be set via environment"
+    exit 0
+    ;;
+  *)
+    echo "Unknown option: $1"
+    exit 1
+    ;;
+  esac
 done
 
 SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
@@ -68,13 +68,13 @@ cd "${TEMP_DIR}"
 # Run terragrunt scaffold
 echo "==> Running terragrunt scaffold..."
 terragrunt scaffold "${MODULE_PATH}" \
-    --no-include-root \
-    --no-dependency-prompt \
-    --var "example_name=${EXAMPLE_NAME}" \
-    --var "module_name=${MODULE_NAME}" \
-    --var "test_name=${TEST_NAME}" \
-    --var "description=${DESCRIPTION}" \
-    --var "outputs_filename=outputs.tf"
+  --no-include-root \
+  --no-dependency-prompt \
+  --var "example_name=${EXAMPLE_NAME}" \
+  --var "module_name=${MODULE_NAME}" \
+  --var "test_name=${TEST_NAME}" \
+  --var "description=${DESCRIPTION}" \
+  --var "outputs_filename=outputs.tf"
 
 cd -
 
