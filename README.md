@@ -2,7 +2,7 @@
 
 Terraform modules to improve management of example content.
 
-# Quickstart
+## Quickstart
 
 To create a new module/example/test combo, run the following command from the root of your repository.
 
