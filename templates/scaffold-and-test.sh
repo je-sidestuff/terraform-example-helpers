@@ -51,7 +51,7 @@ while [[ $# -gt 0 ]]; do
 done
 
 SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
-if [ "$MODULE_REF" == "local" ]; then 
+if [ "$MODULE_REF" == "local" ]; then
   MODULE_PATH="${SCRIPT_DIR}//combo"
 else
   MODULE_PATH="github.com/je-sidestuff/terraform-example-helpers//templates/combo?ref=${MODULE_REF}"
