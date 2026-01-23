@@ -54,7 +54,7 @@ SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
 if [ "$MODULE_REF" == "local" ]; then 
   MODULE_PATH="${SCRIPT_DIR}//combo"
 else
-  MODULE_PATH="github.com/terraform-example-helpers//templates/combo?ref=${MODULE_PATH}"
+  MODULE_PATH="github.com/je-sidestuff/terraform-example-helpers//templates/combo?ref=${MODULE_REF}"
 fi
 RANDOM_SUFFIX="$(date +%s)-$$"
 TEMP_DIR="/tmp/temp-scaffold-${RANDOM_SUFFIX}"
