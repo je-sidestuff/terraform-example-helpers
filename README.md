@@ -6,7 +6,7 @@ Terraform modules to improve management of example content.
 
 To create a new module/example/test combo, run the following command from the root of your repository.
 
-```
+```bash
 docker run --rm \
   -v "$(pwd):/workspace" \
   -w /workspace \
