@@ -6,6 +6,7 @@ EXAMPLE_NAME="${EXAMPLE_NAME:-my-example}"
 MODULE_NAME="${MODULE_NAME:-my-module}"
 TEST_NAME="${TEST_NAME:-my-test}"
 DESCRIPTION="${DESCRIPTION:-A Terraform module}"
+MODULE_REF="${MODULE_REF:-v0.0.1}"
 
 # Parse command line arguments
 while [[ $# -gt 0 ]]; do
@@ -50,7 +51,11 @@ while [[ $# -gt 0 ]]; do
 done
 
 SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
-MODULE_PATH="${SCRIPT_DIR}//combo"
+if [ "$MODULE_REF" == "local" ]; then
+  MODULE_PATH="${SCRIPT_DIR}//combo"
+else
+  MODULE_PATH="github.com/je-sidestuff/terraform-example-helpers//templates/combo?ref=${MODULE_REF}"
+fi
 RANDOM_SUFFIX="$(date +%s)-$$"
 TEMP_DIR="/tmp/temp-scaffold-${RANDOM_SUFFIX}"
 

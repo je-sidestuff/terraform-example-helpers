@@ -1,0 +1,17 @@
+name: Build and Push on Tag
+
+on:
+  push:
+    tags:
+      - "*"
+
+jobs:
+  build-and-push:
+    uses: ./.github/workflows/build-and-push.yml
+    with:
+      tag: ${{ github.ref_name }}
+    permissions:
+      contents: read
+      packages: write
+      attestations: write
+      id-token: write
