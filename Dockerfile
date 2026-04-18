@@ -5,7 +5,7 @@ ARG TERRAGRUNT_VERSION=1.13.2
 
 FROM alpine/terragrunt:${TERRAGRUNT_VERSION} AS terragrunt
 
-FROM golang:1.23-bookworm
+FROM golang:1.25-bookworm
 
 # Install terraform and terragrunt from the alpine/terragrunt image
 COPY --from=terragrunt /bin/terraform /usr/local/bin/

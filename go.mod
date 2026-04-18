@@ -1,6 +1,6 @@
 module github.com/je-sidestuff/terraform-example-helpers
 
-go 1.23
+go 1.25
 
 require github.com/gruntwork-io/terratest v0.47.2
 
