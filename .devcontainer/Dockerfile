@@ -38,7 +38,7 @@ FROM quay.io/terraform-docs/terraform-docs:${TERRAFORM_DOCS_VERSION} as terrafor
 FROM aquasec/trivy:${TRIVY_VERSION} as trivy
 FROM mikefarah/yq:${YQ_VERSION} as yq
 
-FROM mcr.microsoft.com/devcontainers/go:1.23-bullseye
+FROM mcr.microsoft.com/devcontainers/go:1.25-bookworm
 
 COPY --from=helmfile /usr/local/bin/helmfile /usr/local/bin/
 COPY --from=helm /usr/bin/helm /usr/local/bin/
