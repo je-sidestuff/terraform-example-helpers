@@ -41,6 +41,8 @@ while [[ $# -gt 0 ]]; do
     echo ""
     echo "Environment variables:"
     echo "  EXAMPLE_NAME, MODULE_NAME, TEST_NAME, DESCRIPTION can also be set via environment"
+    echo "  GO_MODULE_INIT   If set and no go.mod exists, initializes a Go module with this name"
+    echo "                   and adds terratest as a dependency before scaffolding."
     exit 0
     ;;
   *)
@@ -58,6 +60,36 @@ else
 fi
 RANDOM_SUFFIX="$(date +%s)-$$"
 TEMP_DIR="/tmp/temp-scaffold-${RANDOM_SUFFIX}"
+
+# Check for go.mod and GO_MODULE_INIT environment variable
+GO_MOD_EXISTS=false
+if [ -f "go.mod" ]; then
+  GO_MOD_EXISTS=true
+fi
+
+if [ "$GO_MOD_EXISTS" = false ] && [ -z "${GO_MODULE_INIT:-}" ]; then
+  echo "ERROR: No go.mod file found in the current directory."
+  echo "       Either initialize your Go module first with 'go mod init <module-name>'"
+  echo "       or set the GO_MODULE_INIT environment variable to the desired module name."
+  echo ""
+  echo "       Example: GO_MODULE_INIT=github.com/myorg/myrepo $0"
+  exit 1
+fi
+
+if [ "$GO_MOD_EXISTS" = true ] && [ -n "${GO_MODULE_INIT:-}" ]; then
+  echo "WARNING: go.mod already exists but GO_MODULE_INIT is set to '${GO_MODULE_INIT}'."
+  echo "         Using existing go.mod and ignoring GO_MODULE_INIT."
+  echo ""
+fi
+
+if [ "$GO_MOD_EXISTS" = false ] && [ -n "${GO_MODULE_INIT:-}" ]; then
+  echo "==> No go.mod found. Initializing Go module with: ${GO_MODULE_INIT}"
+  go mod init "${GO_MODULE_INIT}"
+  echo "==> Adding terratest dependency..."
+  go get github.com/gruntwork-io/terratest/modules/terraform
+  go mod tidy
+  echo ""
+fi
 
 echo "==> Scaffolding with the following configuration:"
 echo "    Example: ${EXAMPLE_NAME}"
