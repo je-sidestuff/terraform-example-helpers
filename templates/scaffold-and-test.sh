@@ -41,8 +41,9 @@ while [[ $# -gt 0 ]]; do
     echo ""
     echo "Environment variables:"
     echo "  EXAMPLE_NAME, MODULE_NAME, TEST_NAME, DESCRIPTION can also be set via environment"
-    echo "  GO_MODULE_INIT   If set and no go.mod exists, initializes a Go module with this name"
-    echo "                   and adds terratest as a dependency before scaffolding."
+    echo "  GO_MODULE_INIT     If set and no go.mod exists, initializes a Go module with this name"
+    echo "                     and adds terratest as a dependency before scaffolding."
+    echo "  TERRATEST_VERSION  Version of terratest to use (default: v0.55.0)"
     exit 0
     ;;
   *)
@@ -90,7 +91,9 @@ if [ "$GO_MOD_EXISTS" = false ] && [ -n "${GO_MODULE_INIT:-}" ]; then
   # where the sumdb cache directory may not be accessible
   # Note: Get the main terratest module, not the subpackage path, to avoid
   # Go resolving the subpackage as a separate pseudo-versioned module
-  GOSUMDB=off go get github.com/gruntwork-io/terratest
+  # Pin to v0.55.0 which supports Go 1.25 (v0.56.0+ requires Go >= 1.26)
+  TERRATEST_VERSION="${TERRATEST_VERSION:-v0.55.0}"
+  GOSUMDB=off go get "github.com/gruntwork-io/terratest@${TERRATEST_VERSION}"
   GOSUMDB=off go mod tidy
   echo ""
 fi
@@ -129,6 +132,15 @@ echo ""
 # Run the terratest
 echo "==> Running terratest..."
 cp go.* "${TEMP_DIR}"
+cd "${TEMP_DIR}"
+# Ensure terratest is properly pinned before running go mod tidy
+# This prevents Go from treating subpaths like github.com/gruntwork-io/terratest/modules/terraform
+# as separate modules (which causes "ambiguous import" errors)
+TERRATEST_VERSION="${TERRATEST_VERSION:-v0.55.0}"
+GOSUMDB=off go get "github.com/gruntwork-io/terratest@${TERRATEST_VERSION}"
+# Use go mod tidy to add any missing dependencies from the scaffolded test files
+GOSUMDB=off go mod tidy
+cd -
 cd "${TEMP_DIR}/test/${TEST_NAME}"
 go test -v -timeout 30m
 

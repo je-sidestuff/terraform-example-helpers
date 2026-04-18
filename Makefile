@@ -1,4 +1,4 @@
-.PHONY: test build
+.PHONY: test build docker-build
 
 # Run Go tests
 test:
@@ -8,3 +8,7 @@ test:
 build:
 	go mod download
 	go build ./...
+
+# Build Docker image
+docker-build:
+	docker build -t terraform-example-helpers .
