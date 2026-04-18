@@ -88,7 +88,9 @@ if [ "$GO_MOD_EXISTS" = false ] && [ -n "${GO_MODULE_INIT:-}" ]; then
   echo "==> Adding terratest dependency..."
   # Disable sumdb verification to avoid issues in containerized environments
   # where the sumdb cache directory may not be accessible
-  GOSUMDB=off go get github.com/gruntwork-io/terratest/modules/terraform
+  # Note: Get the main terratest module, not the subpackage path, to avoid
+  # Go resolving the subpackage as a separate pseudo-versioned module
+  GOSUMDB=off go get github.com/gruntwork-io/terratest
   GOSUMDB=off go mod tidy
   echo ""
 fi
