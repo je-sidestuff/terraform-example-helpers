@@ -86,8 +86,10 @@ if [ "$GO_MOD_EXISTS" = false ] && [ -n "${GO_MODULE_INIT:-}" ]; then
   echo "==> No go.mod found. Initializing Go module with: ${GO_MODULE_INIT}"
   go mod init "${GO_MODULE_INIT}"
   echo "==> Adding terratest dependency..."
-  go get github.com/gruntwork-io/terratest/modules/terraform
-  go mod tidy
+  # Disable sumdb verification to avoid issues in containerized environments
+  # where the sumdb cache directory may not be accessible
+  GOSUMDB=off go get github.com/gruntwork-io/terratest/modules/terraform
+  GOSUMDB=off go mod tidy
   echo ""
 fi
 

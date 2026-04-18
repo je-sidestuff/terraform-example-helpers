@@ -21,6 +21,6 @@ docker run --rm \
   /app/templates/scaffold-and-test.sh
 ```
 
-Note that you must already have the `go.mod` and `go.sum` file present in the repo.
+Note that you must already have the `go.mod` and `go.sum` file present in the repo, or you must also provide the GO_MODULE_INIT env var.
 
 (Note for future implementation - the params to run as a user and to redirect the go cache can be re-evaluated for inclusion in the container.)
