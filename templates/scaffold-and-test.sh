@@ -42,8 +42,7 @@ while [[ $# -gt 0 ]]; do
     echo "Environment variables:"
     echo "  EXAMPLE_NAME, MODULE_NAME, TEST_NAME, DESCRIPTION can also be set via environment"
     echo "  GO_MODULE_INIT     If set and no go.mod exists, initializes a Go module with this name"
-    echo "                     and adds terratest as a dependency before scaffolding."
-    echo "  TERRATEST_VERSION  Version of terratest to use (default: v0.55.0)"
+    echo "                     and adds terratest/testify dependencies before scaffolding."
     exit 0
     ;;
   *)
@@ -86,15 +85,15 @@ fi
 if [ "$GO_MOD_EXISTS" = false ] && [ -n "${GO_MODULE_INIT:-}" ]; then
   echo "==> No go.mod found. Initializing Go module with: ${GO_MODULE_INIT}"
   go mod init "${GO_MODULE_INIT}"
-  echo "==> Adding terratest dependency..."
-  # Disable sumdb verification to avoid issues in containerized environments
-  # where the sumdb cache directory may not be accessible
-  # Note: Get the main terratest module, not the subpackage path, to avoid
-  # Go resolving the subpackage as a separate pseudo-versioned module
-  # Pin to v0.55.0 which supports Go 1.25 (v0.56.0+ requires Go >= 1.26)
-  TERRATEST_VERSION="${TERRATEST_VERSION:-v0.55.0}"
-  GOSUMDB=off go get "github.com/gruntwork-io/terratest@${TERRATEST_VERSION}"
-  GOSUMDB=off go mod tidy
+  echo "==> Adding terratest and testify dependencies..."
+  # Add required dependencies directly to go.mod
+  cat >> go.mod <<EOF
+
+require (
+	github.com/gruntwork-io/terratest v0.46.16
+	github.com/stretchr/testify v1.8.4
+)
+EOF
   echo ""
 fi
 
@@ -133,11 +132,7 @@ echo ""
 echo "==> Running terratest..."
 cp go.* "${TEMP_DIR}"
 cd "${TEMP_DIR}"
-# Ensure terratest is properly pinned before running go mod tidy
-# This prevents Go from treating subpaths like github.com/gruntwork-io/terratest/modules/terraform
-# as separate modules (which causes "ambiguous import" errors)
-TERRATEST_VERSION="${TERRATEST_VERSION:-v0.55.0}"
-GOSUMDB=off go get "github.com/gruntwork-io/terratest@${TERRATEST_VERSION}"
+
 # Use go mod tidy to add any missing dependencies from the scaffolded test files
 GOSUMDB=off go mod tidy
 cd -
@@ -146,12 +141,12 @@ go test -v -timeout 30m
 
 cd -
 
-mkdir -p "modules/${MODULE_NAME}"
-mkdir -p "examples/${EXAMPLE_NAME}"
+mkdir -p "modules"
+mkdir -p "examples"
 mkdir -p "test"
 cp -r "${TEMP_DIR}/test/${TEST_NAME}" "test/"
-cp -r "${TEMP_DIR}/modules/${MODULE_NAME}" "modules/${MODULE_NAME}"
-cp -r "${TEMP_DIR}/examples/${EXAMPLE_NAME}" "examples/${EXAMPLE_NAME}"
+cp -r "${TEMP_DIR}/modules/${MODULE_NAME}" "modules/"
+cp -r "${TEMP_DIR}/examples/${EXAMPLE_NAME}" "examples/"
 
 rm -rf "${TEMP_DIR}"
 
